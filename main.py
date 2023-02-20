@@ -1,8 +1,12 @@
-import re
+from bs4 import BeautifulSoup as bs
 
-# A B C D
+import requests as req
 
-s = '이 영화는 C등급입니다.'
+url = "https://naver.com"
 
-print(s.split('이 영화는 ')[1].split('등급')[0])
-print(re.findall(r'이 (..)는 (.)등급입니다.', s))
+res = req.get(url)
+# print(res.text)
+
+soup = bs(res.text, "html.parser")
+
+print(soup.title)
